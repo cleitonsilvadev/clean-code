@@ -54,7 +54,7 @@ Ou execute diretamente usando `npx`:
 npx skill-clean-code
 ```
 
-> 📖 **Precisa de opções avançadas (por projeto, Cursor, Windsurf, Git hook, desinstalação)?**  
+> 📖 **Precisa de opções avançadas (por projeto, Cursor, Windsurf, desinstalação)?**  
 > Veja o [**Guia Completo de Instalação (INSTALL.pt-BR.md)**](INSTALL.pt-BR.md).
 
 ---

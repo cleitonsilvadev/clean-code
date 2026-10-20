@@ -15,8 +15,7 @@ Este guia detalha todas as formas de instalar, atualizar e remover a **Clean Cod
 - [🔗 3. Instalação via Symlink (Modo Desenvolvedor)](#3-instalacao-via-symlink)
 - [📁 4. Instalação por Projeto (Compartilhamento com a Equipe)](#4-instalacao-por-projeto)
 - [💻 5. Integração com Cursor e Windsurf](#5-integracao-com-cursor-e-windsurf)
-- [🪝 6. Git Pre-Commit Hook](#6-git-pre-commit-hook)
-- [🛠️ 7. Usando o Script Local (`install.sh` ou `Makefile`)](#7-usando-o-script-local)
+- [🛠️ 6. Usando o Script Local (`install.sh` ou `Makefile`)](#6-usando-o-script-local)
 - [🔄 Como Atualizar](#como-atualizar)
 - [🗑️ Como Desinstalar](#como-desinstalar)
 
@@ -48,7 +47,6 @@ npx skill-clean-code
 npx skill-clean-code --project
 npx skill-clean-code --cursor
 npx skill-clean-code --windsurf
-npx skill-clean-code --hook
 ```
 
 Você também pode especificar um caminho de projeto personalizado:
@@ -137,26 +135,8 @@ curl -fsSL https://raw.githubusercontent.com/cleitonsilvadev/clean-code/main/ins
 
 ---
 
-<a id="6-git-pre-commit-hook"></a>
-## 🪝 6. Git Pre-Commit Hook
-
-Instale um hook de pre-commit no seu repositório (`.git/hooks/pre-commit`) para alertar sobre instruções de depuração deixadas acidentalmente antes de cada commit:
-
-```bash
-# Via curl
-curl -fsSL https://raw.githubusercontent.com/cleitonsilvadev/clean-code/main/install.sh | bash -s -- --hook
-
-# Via npx
-npx skill-clean-code --hook
-
-# A partir do repositório clonado ou Makefile
-./install.sh --hook        # ou: make hook
-```
-
----
-
-<a id="7-usando-o-script-local"></a>
-## 🛠️ 7. Usando o Script Local (`install.sh` ou `Makefile`)
+<a id="6-usando-o-script-local"></a>
+## 🛠️ 6. Usando o Script Local (`install.sh` ou `Makefile`)
 
 Se você já clonou este repositório localmente:
 

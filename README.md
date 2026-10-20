@@ -54,7 +54,7 @@ Or run directly using `npx`:
 npx skill-clean-code
 ```
 
-> 📖 **Need advanced options (per project, Cursor, Windsurf, Git hooks, symlinks)?**  
+> 📖 **Need advanced options (per project, Cursor, Windsurf, symlinks)?**  
 > Check the [**Complete Installation Guide (docs/INSTALL.md)**](docs/INSTALL.md).
 
 ---

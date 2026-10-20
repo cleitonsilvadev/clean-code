@@ -20,7 +20,6 @@
     "install:project": "./install.sh --project",
     "install:cursor": "./install.sh --cursor",
     "install:windsurf": "./install.sh --windsurf",
-    "install:hook": "./install.sh --hook",
     "uninstall": "./install.sh --uninstall"
   },
   "repository": {

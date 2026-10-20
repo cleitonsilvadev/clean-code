@@ -66,13 +66,6 @@ jobs:
           test -f "./test-workspace/.windsurfrules"
           grep -q "Early Return" "./test-workspace/.windsurfrules"
 
-      - name: Test Git hook installation
-        run: |
-          mkdir -p ./test-workspace/.git
-          ./install.sh --hook ./test-workspace
-          test -x "./test-workspace/.git/hooks/pre-commit"
-          make hook
-
       - name: Test piped execution (like curl | bash)
         run: |
           cat install.sh | bash -s -- --project ./pipe-workspace
@@ -111,5 +104,4 @@ jobs:
           test -f docs/CONTRIBUTING.pt-BR.md
           test -f rules/cursorrules
           test -f rules/windsurfrules
-          test -f rules/pre-commit
           test -f package.json

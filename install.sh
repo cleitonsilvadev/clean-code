@@ -27,7 +27,6 @@ show_help() {
   echo "  -p, --project      Instala localmente no projeto em .claude/skills"
   echo "      --cursor       Gera arquivo .cursorrules no projeto atual para o Cursor"
   echo "      --windsurf     Gera arquivo .windsurfrules no projeto atual para o Windsurf"
-  echo "      --hook         Instala Git pre-commit hook no projeto atual (.git/hooks/pre-commit)"
   echo "  -s, --symlink      Cria links simbólicos (requer repositório local)"
   echo "  -u, --uninstall    Remove a skill dos destinos configurados"
   echo "  -h, --help         Exibe esta mensagem de ajuda"
@@ -37,7 +36,6 @@ show_help() {
   echo "  ./install.sh --project       # No projeto atual (.claude/skills)"
   echo "  ./install.sh --cursor        # Gera .cursorrules no projeto atual"
   echo "  ./install.sh --windsurf      # Gera .windsurfrules no projeto atual"
-  echo "  ./install.sh --hook          # Instala Git pre-commit hook"
 }
 
 # Parse argumentos
@@ -82,16 +80,6 @@ while [[ $# -gt 0 ]]; do
       fi
       shift
       ;;
-    --hook)
-      MODE="hook"
-      if [[ -n "$2" && "$2" != -* ]]; then
-        TARGET_DIR="$2"
-        shift
-      else
-        TARGET_DIR="."
-      fi
-      shift
-      ;;
     -s|--symlink)
       USE_SYMLINK=true
       shift
@@ -124,28 +112,6 @@ install_rules_file() {
     curl -fsSL "${REPO_RAW_URL}/rules/${src_name}" -o "$dest_file"
   fi
   echo -e "  ${GREEN}✓${NC} Instalado com sucesso: ${dest_file}"
-}
-
-install_git_hook() {
-  local target="${TARGET_DIR:-.}"
-  local hooks_dir="${target}/.git/hooks"
-
-  if [ ! -d "${target}/.git" ]; then
-    echo -e "  ${RED}✗${NC} Diretório '${target}' não é um repositório Git (.git não encontrado)."
-    exit 1
-  fi
-
-  mkdir -p "$hooks_dir"
-  local dest_file="${hooks_dir}/pre-commit"
-
-  echo -e "${BLUE}Instalando pre-commit hook em ${dest_file}...${NC}"
-  if [ -n "$SCRIPT_DIR" ] && [ -f "$SCRIPT_DIR/rules/pre-commit" ]; then
-    cp "$SCRIPT_DIR/rules/pre-commit" "$dest_file"
-  else
-    curl -fsSL "${REPO_RAW_URL}/rules/pre-commit" -o "$dest_file"
-  fi
-  chmod +x "$dest_file"
-  echo -e "  ${GREEN}✓${NC} Hook pre-commit instalado e ativado com sucesso!"
 }
 
 install_to_path() {
@@ -200,7 +166,7 @@ if [ "$UNINSTALL" = true ]; then
   uninstall_from_path "./.claude/skills"
   uninstall_from_path "./.agents/skills"
   uninstall_from_path "./.opencode/skills"
-  rm -f ./.cursorrules ./.windsurfrules ./.git/hooks/pre-commit
+  rm -f ./.cursorrules ./.windsurfrules
   echo -e "${GREEN}Desinstalação concluída com sucesso!${NC}"
   exit 0
 fi
@@ -215,8 +181,6 @@ elif [ "$MODE" = "cursor" ]; then
   install_rules_file "cursorrules" ".cursorrules"
 elif [ "$MODE" = "windsurf" ]; then
   install_rules_file "windsurfrules" ".windsurfrules"
-elif [ "$MODE" = "hook" ]; then
-  install_git_hook
 fi
 
 echo ""

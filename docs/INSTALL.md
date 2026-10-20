@@ -15,8 +15,7 @@ This guide details all ways to install, update, and remove the **Clean Code Skil
 - [🔗 3. Installation via Symlink (Developer Mode)](#3-installation-via-symlink)
 - [📁 4. Per-Project Installation (Sharing with Your Team)](#4-per-project-installation)
 - [💻 5. Cursor & Windsurf Integration](#5-cursor-and-windsurf-integration)
-- [🪝 6. Git Pre-Commit Hook](#6-git-pre-commit-hook)
-- [🛠️ 7. Using the Local Script (`install.sh` or `Makefile`)](#7-using-the-local-script)
+- [🛠️ 6. Using the Local Script (`install.sh` or `Makefile`)](#6-using-the-local-script)
 - [🔄 How to Update](#how-to-update)
 - [🗑️ How to Uninstall](#how-to-uninstall)
 
@@ -48,7 +47,6 @@ npx skill-clean-code
 npx skill-clean-code --project
 npx skill-clean-code --cursor
 npx skill-clean-code --windsurf
-npx skill-clean-code --hook
 ```
 
 You can also specify a custom project path:
@@ -137,26 +135,8 @@ curl -fsSL https://raw.githubusercontent.com/cleitonsilvadev/clean-code/main/ins
 
 ---
 
-<a id="6-git-pre-commit-hook"></a>
-## 🪝 6. Git Pre-Commit Hook
-
-Install an automated pre-commit hook in your project (`.git/hooks/pre-commit`) that checks staged changes for leftover debug statements before every commit:
-
-```bash
-# Via curl
-curl -fsSL https://raw.githubusercontent.com/cleitonsilvadev/clean-code/main/install.sh | bash -s -- --hook
-
-# Via npx
-npx skill-clean-code --hook
-
-# From cloned repository or Makefile
-./install.sh --hook        # or: make hook
-```
-
----
-
-<a id="7-using-the-local-script"></a>
-## 🛠️ 7. Using the Local Script (`install.sh` or `Makefile`)
+<a id="6-using-the-local-script"></a>
+## 🛠️ 6. Using the Local Script (`install.sh` or `Makefile`)
 
 If you have already cloned this repository locally:
 

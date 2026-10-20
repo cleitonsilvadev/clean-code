@@ -1,4 +1,4 @@
-.PHONY: install link project cursor windsurf hook uninstall help
+.PHONY: install link project cursor windsurf uninstall help
 
 help:
 	@echo "Clean Code Skill - Comandos disponíveis:"
@@ -7,7 +7,6 @@ help:
 	@echo "  make project    - Instala no diretório atual (.claude e .agents)"
 	@echo "  make cursor     - Gera .cursorrules no diretório atual"
 	@echo "  make windsurf   - Gera .windsurfrules no diretório atual"
-	@echo "  make hook       - Instala Git pre-commit hook no projeto atual"
 	@echo "  make uninstall  - Remove a skill global e localmente"
 
 install:
@@ -29,10 +28,6 @@ cursor:
 windsurf:
 	@chmod +x install.sh
 	@./install.sh --windsurf
-
-hook:
-	@chmod +x install.sh
-	@./install.sh --hook
 
 uninstall:
 	@chmod +x install.sh

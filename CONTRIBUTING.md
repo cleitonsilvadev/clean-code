@@ -26,7 +26,7 @@ First off, thank you for considering contributing to the **Clean Code Skill**! I
 ### Proposing a New Clean Code Rule
 
 When suggesting a new rule or modifying an existing one:
-1. Open an issue using the **[Suggest a Clean Code Rule](https://github.com/cleitonsilvadev/skill-clean-code/issues/new?template=rule_suggestion.md)** template.
+1. Open an issue using the **[Suggest a Clean Code Rule](https://github.com/cleitonsilvadev/clean-code/issues/new?template=rule_suggestion.md)** template.
 2. Provide a clear rationale explaining *why* the rule is necessary and what anti-pattern it prevents.
 3. Include concrete **❌ Avoid** and **✅ Prefer** code examples.
 
@@ -47,8 +47,8 @@ If you find a bug or want to enhance `install.sh` or `Makefile`:
 
 1. **Fork and Clone:**
    ```bash
-   git clone https://github.com/YOUR_USERNAME/skill-clean-code.git
-   cd skill-clean-code
+   git clone https://github.com/YOUR_USERNAME/clean-code.git
+   cd clean-code
    ```
 
 2. **Create a Feature Branch:**

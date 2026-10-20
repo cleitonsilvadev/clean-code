@@ -6,8 +6,8 @@
 
 [![npm version](https://img.shields.io/npm/v/skill-clean-code.svg?color=cb3837)](https://www.npmjs.com/package/skill-clean-code)
 [![Licença: MIT](https://img.shields.io/badge/Licen%C3%A7a-MIT-blue.svg)](../LICENSE)
-[![CI](https://github.com/cleitonsilvadev/skill-clean-code/actions/workflows/ci.yml/badge.svg)](https://github.com/cleitonsilvadev/skill-clean-code/actions/workflows/ci.yml)
-[![Compatível com](https://img.shields.io/badge/Compat%C3%ADvel%20com-Claude%20Code%20%7C%20OpenCode%20%7C%20Cursor%20%7C%20Windsurf-black)](https://github.com/cleitonsilvadev/skill-clean-code)
+[![CI](https://github.com/cleitonsilvadev/clean-code/actions/workflows/ci.yml/badge.svg)](https://github.com/cleitonsilvadev/clean-code/actions/workflows/ci.yml)
+[![Compatível com](https://img.shields.io/badge/Compat%C3%ADvel%20com-Claude%20Code%20%7C%20OpenCode%20%7C%20Cursor%20%7C%20Windsurf-black)](https://github.com/cleitonsilvadev/clean-code)
 [![PRs Bem-vindos](https://img.shields.io/badge/PRs-bem--vindos-brightgreen.svg)](CONTRIBUTING.pt-BR.md)
 
 > **Skill universal de Clean Code para agentes de IA** ([Claude Code](https://claude.ai/code), [OpenCode](https://opencode.ai), Cursor, Windsurf e ferramentas compatíveis com o padrão **Agent Skills**).
@@ -45,7 +45,7 @@ Esta skill injeta regras estritas de legibilidade, arquitetura limpa, manutenibi
 Instale globalmente com apenas um comando via `curl`:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/cleitonsilvadev/skill-clean-code/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/cleitonsilvadev/clean-code/main/install.sh | bash
 ```
 
 Ou execute diretamente usando `npx`:

@@ -25,7 +25,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cleitonsilvadev/skill-clean-code.git"
+    "url": "git+https://github.com/cleitonsilvadev/clean-code.git"
   },
   "keywords": [
     "clean-code",
@@ -41,7 +41,7 @@
   "author": "Cleiton Silva (https://github.com/cleitonsilvadev)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/cleitonsilvadev/skill-clean-code/issues"
+    "url": "https://github.com/cleitonsilvadev/clean-code/issues"
   },
-  "homepage": "https://github.com/cleitonsilvadev/skill-clean-code#readme"
+  "homepage": "https://github.com/cleitonsilvadev/clean-code#readme"
 }

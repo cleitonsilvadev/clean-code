@@ -25,7 +25,7 @@ Antes de mais nada, muito obrigado pelo interesse em contribuir com a **Clean Co
 ### Propondo uma Nova Regra de Clean Code
 
 Ao sugerir uma nova diretriz ou ajustar uma regra existente:
-1. Abra uma issue usando o template **[Sugerir Regra](https://github.com/cleitonsilvadev/skill-clean-code/issues/new?template=rule_suggestion.md)**.
+1. Abra uma issue usando o template **[Sugerir Regra](https://github.com/cleitonsilvadev/clean-code/issues/new?template=rule_suggestion.md)**.
 2. Forneça uma justificativa clara explicando *por que* a regra é necessária e qual anti-pattern ela evita.
 3. Inclua exemplos práticos de **❌ Evitar** e **✅ Preferir**.
 
@@ -46,8 +46,8 @@ Caso encontre algum bug ou deseje melhorar o `install.sh` ou `Makefile`:
 
 1. **Fork e Clone:**
    ```bash
-   git clone https://github.com/SEU_USUARIO/skill-clean-code.git
-   cd skill-clean-code
+   git clone https://github.com/SEU_USUARIO/clean-code.git
+   cd clean-code
    ```
 
 2. **Crie uma Branch:**

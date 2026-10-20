@@ -31,12 +31,12 @@ A forma mais rápida de instalar sem precisar clonar repositório manualmente.
 
 **Global (Claude Code e OpenCode):**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/cleitonsilvadev/skill-clean-code/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/cleitonsilvadev/clean-code/main/install.sh | bash
 ```
 
 **Por Projeto (diretório atual):**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/cleitonsilvadev/skill-clean-code/main/install.sh | bash -s -- --project
+curl -fsSL https://raw.githubusercontent.com/cleitonsilvadev/clean-code/main/install.sh | bash -s -- --project
 ```
 
 ### Via `npx`:
@@ -54,7 +54,7 @@ npx skill-clean-code --hook
 Você também pode especificar um caminho de projeto personalizado:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/cleitonsilvadev/skill-clean-code/main/install.sh | bash -s -- --project /caminho/do/projeto
+curl -fsSL https://raw.githubusercontent.com/cleitonsilvadev/clean-code/main/install.sh | bash -s -- --project /caminho/do/projeto
 ```
 
 ---
@@ -67,7 +67,7 @@ Ideal para manter um repositório git gerenciável e atualizável via `git pull`
 ### Para Claude Code & OpenCode:
 
 ```bash
-git clone https://github.com/cleitonsilvadev/skill-clean-code.git ~/.claude/skills/clean-code
+git clone https://github.com/cleitonsilvadev/clean-code.git ~/.claude/skills/clean-code
 ```
 
 > **Nota:** O OpenCode descobre e carrega automaticamente as skills localizadas em `~/.claude/skills/`. Uma única instalação atende a ambos os assistentes!
@@ -83,13 +83,13 @@ git -C ~/.claude/skills/clean-code pull
 <a id="3-instalacao-via-symlink"></a>
 ## 🔗 3. Instalação via Symlink (Modo Desenvolvedor)
 
-Se você clonou este repositório em sua máquina (por exemplo, em `~/projects/skill-clean-code`) e deseja fazer alterações na skill ou no guia de referência que tenham **efeito imediato** sem precisar reinstalar:
+Se você clonou este repositório em sua máquina (por exemplo, em `~/projects/clean-code`) e deseja fazer alterações na skill ou no guia de referência que tenham **efeito imediato** sem precisar reinstalar:
 
 ```bash
 mkdir -p ~/.claude/skills
 
 # Symlink para Claude Code e OpenCode
-ln -s ~/projects/skill-clean-code ~/.claude/skills/clean-code
+ln -s ~/projects/clean-code ~/.claude/skills/clean-code
 ```
 
 ---
@@ -102,13 +102,13 @@ Para garantir que todos os desenvolvedores e agentes trabalhando no mesmo reposi
 ### Como pasta direta:
 
 ```bash
-git clone https://github.com/cleitonsilvadev/skill-clean-code.git .claude/skills/clean-code
+git clone https://github.com/cleitonsilvadev/clean-code.git .claude/skills/clean-code
 ```
 
 ### Como Git Submodule:
 
 ```bash
-git submodule add https://github.com/cleitonsilvadev/skill-clean-code.git .claude/skills/clean-code
+git submodule add https://github.com/cleitonsilvadev/clean-code.git .claude/skills/clean-code
 ```
 
 ---
@@ -122,10 +122,10 @@ Você pode gerar os arquivos nativos de regras para o Cursor (`.cursorrules`) ou
 
 ```bash
 # Gerar .cursorrules para o Cursor
-curl -fsSL https://raw.githubusercontent.com/cleitonsilvadev/skill-clean-code/main/install.sh | bash -s -- --cursor
+curl -fsSL https://raw.githubusercontent.com/cleitonsilvadev/clean-code/main/install.sh | bash -s -- --cursor
 
 # Gerar .windsurfrules para o Windsurf
-curl -fsSL https://raw.githubusercontent.com/cleitonsilvadev/skill-clean-code/main/install.sh | bash -s -- --windsurf
+curl -fsSL https://raw.githubusercontent.com/cleitonsilvadev/clean-code/main/install.sh | bash -s -- --windsurf
 ```
 
 ### A partir do repositório clonado ou Makefile:
@@ -144,7 +144,7 @@ Instale um hook de pre-commit no seu repositório (`.git/hooks/pre-commit`) para
 
 ```bash
 # Via curl
-curl -fsSL https://raw.githubusercontent.com/cleitonsilvadev/skill-clean-code/main/install.sh | bash -s -- --hook
+curl -fsSL https://raw.githubusercontent.com/cleitonsilvadev/clean-code/main/install.sh | bash -s -- --hook
 
 # Via npx
 npx skill-clean-code --hook

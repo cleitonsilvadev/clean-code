@@ -10,7 +10,7 @@ RED='\033[0;31m'
 NC='\033[0m' # No Color
 
 SKILL_NAME="clean-code"
-REPO_RAW_URL="https://raw.githubusercontent.com/cleitonsilvadev/skill-clean-code/main"
+REPO_RAW_URL="https://raw.githubusercontent.com/cleitonsilvadev/clean-code/main"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" 2>/dev/null)" 2>/dev/null && pwd || echo "")"
 
 print_banner() {

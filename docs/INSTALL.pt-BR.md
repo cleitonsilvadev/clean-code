@@ -14,8 +14,8 @@ Este guia detalha todas as formas de instalar, atualizar e remover a **Clean Cod
 - [🐙 2. Instalação via `git clone`](#2-instalacao-via-git-clone)
 - [🔗 3. Instalação via Symlink (Modo Desenvolvedor)](#3-instalacao-via-symlink)
 - [📁 4. Instalação por Projeto (Compartilhamento com a Equipe)](#4-instalacao-por-projeto)
-- [💻 5. Integração com Cursor e Windsurf](#5-integracao-com-cursor-e-windsurf)
-- [🛠️ 6. Usando o Script Local (`install.sh` ou `Makefile`)](#6-usando-o-script-local)
+- [🛠️ 5. Usando o Script Local (`install.sh` ou `Makefile`)](#5-usando-o-script-local)
+- [🪝 6. Hooks do Claude Code (Carga Automática na Primeira Edição)](#6-hooks-do-claude-code)
 - [🔄 Como Atualizar](#como-atualizar)
 - [🗑️ Como Desinstalar](#como-desinstalar)
 
@@ -45,9 +45,23 @@ Execute diretamente via Node.js / npm:
 ```bash
 npx skill-clean-code
 npx skill-clean-code --project
-npx skill-clean-code --cursor
-npx skill-clean-code --windsurf
 ```
+
+### Via `npx skills` (qualquer agente)
+
+O repositório é compatível com a CLI aberta [`skills`](https://github.com/vercel-labs/skills), que detecta os agentes instalados na sua máquina (Claude Code, Codex, Cline, Pi, Warp, Zed e vários outros) e instala a skill em cada um:
+
+```bash
+npx skills add cleitonsilvadev/clean-code            # no projeto atual
+npx skills add cleitonsilvadev/clean-code -g         # global
+npx skills add cleitonsilvadev/clean-code -a claude-code -a codex
+```
+
+> Ela copia o repositório inteiro para a pasta da skill (docs, hooks, instalador). Use o `install.sh` se quiser só o `SKILL.md` e o `reference.md`.
+
+### Onde o `install.sh` coloca a skill
+
+A cópia real vai para `~/.agents/skills/clean-code` (ou `.agents/skills/` no projeto) — a pasta lida por Codex, Cursor, Windsurf, Cline, Pi, Warp, Zed e outros. O Claude Code lê `.claude/skills/`, que guarda um symlink para essa cópia (mesmo layout do `npx skills`). O OpenCode também lê `~/.claude/skills/`.
 
 Você também pode especificar um caminho de projeto personalizado:
 
@@ -111,32 +125,8 @@ git submodule add https://github.com/cleitonsilvadev/clean-code.git .claude/skil
 
 ---
 
-<a id="5-integracao-com-cursor-e-windsurf"></a>
-## 💻 5. Integração com Cursor e Windsurf
-
-Você pode gerar os arquivos nativos de regras para o Cursor (`.cursorrules`) ou Windsurf (`.windsurfrules`) diretamente no seu workspace:
-
-### Via comando `curl`:
-
-```bash
-# Gerar .cursorrules para o Cursor
-curl -fsSL https://raw.githubusercontent.com/cleitonsilvadev/clean-code/main/install.sh | bash -s -- --cursor
-
-# Gerar .windsurfrules para o Windsurf
-curl -fsSL https://raw.githubusercontent.com/cleitonsilvadev/clean-code/main/install.sh | bash -s -- --windsurf
-```
-
-### A partir do repositório clonado ou Makefile:
-
-```bash
-./install.sh --cursor      # ou: make cursor
-./install.sh --windsurf    # ou: make windsurf
-```
-
----
-
-<a id="6-usando-o-script-local"></a>
-## 🛠️ 6. Usando o Script Local (`install.sh` ou `Makefile`)
+<a id="5-usando-o-script-local"></a>
+## 🛠️ 5. Usando o Script Local (`install.sh` ou `Makefile`)
 
 Se você já clonou este repositório localmente:
 
@@ -168,6 +158,28 @@ make help       # Lista todos os comandos disponíveis
 
 ---
 
+<a id="6-hooks-do-claude-code"></a>
+## 🪝 6. Hooks do Claude Code (Carga Automática na Primeira Edição)
+
+Opcional. Instala dois hooks do Claude Code para que o agente nunca edite código sem a skill no contexto:
+
+- `PreToolUse` (`Edit|Write|MultiEdit|NotebookEdit`): na **primeira edição de código de cada sessão** (e de cada subagente), injeta o `SKILL.md` no contexto. As edições seguintes passam em silêncio; arquivos que não são código (`.md`, `.json`, …) são ignorados.
+- `SessionStart` (`compact|resume`): zera esse estado, porque o contexto foi resumido e a skill pode ter se perdido.
+
+```bash
+./install.sh --hooks              # global: ~/.claude/hooks + ~/.claude/settings.json
+./install.sh --hooks .            # projeto: ./.claude/hooks + ./.claude/settings.json
+curl -fsSL https://raw.githubusercontent.com/cleitonsilvadev/clean-code/main/install.sh | bash -s -- --hooks
+```
+
+Requisitos e comportamento:
+
+- Precisa de `node` (ele mescla as entradas no `settings.json` sem tocar nos seus outros hooks; rodar duas vezes não duplica nada).
+- Os hooks leem a skill da pasta irmã `skills/clean-code/`, então instale a skill no **mesmo escopo** (`./install.sh` para global, `./install.sh --project` para projeto).
+- Os hooks valem só para sessões novas. `./install.sh --uninstall` remove os hooks junto com a skill.
+
+---
+
 <a id="como-atualizar"></a>
 ## 🔄 Como Atualizar
 
@@ -190,6 +202,6 @@ Para remover a skill dos diretórios padrão:
 make uninstall
 
 # Ou manualmente
-rm -rf ~/.claude/skills/clean-code
-rm -rf .claude/skills/clean-code
+rm -rf ~/.claude/skills/clean-code ~/.agents/skills/clean-code
+rm -rf .claude/skills/clean-code .agents/skills/clean-code
 ```

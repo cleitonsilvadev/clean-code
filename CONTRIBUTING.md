@@ -38,8 +38,8 @@ Our reference guide (`reference.md`) illustrates universal clean code principles
 
 If you find a bug or want to enhance `install.sh` or `Makefile`:
 1. Keep the installer POSIX/Bash-compatible.
-2. Avoid hardcoding markdown or rule content directly into `install.sh` — reference files in `rules/` or root dynamically.
-3. Test locally across all supported modes (`--global`, `--project`, `--cursor`, `--windsurf`, `--uninstall`).
+2. Avoid hardcoding markdown or rule content directly into `install.sh` — derive them from `SKILL.md` and the other repository files at install time.
+3. Test locally across all supported modes (`--global`, `--project`, `--hooks`, `--uninstall`).
 
 ---
 
@@ -61,8 +61,8 @@ If you find a bug or want to enhance `install.sh` or `Makefile`:
    # Test global install in a temporary prefix
    HOME=/tmp/test-home ./install.sh --global
 
-   # Test Cursor rules generation
-   ./install.sh --cursor /tmp/test-project
+   # Test a project install
+   ./install.sh --project /tmp/test-project
    ```
 
 ---

@@ -40,6 +40,8 @@ jobs:
       - name: Test global installation
         run: |
           ./install.sh --global
+          test -f "$HOME/.agents/skills/clean-code/SKILL.md"
+          test -L "$HOME/.claude/skills/clean-code"
           test -f "$HOME/.claude/skills/clean-code/SKILL.md"
           test -f "$HOME/.claude/skills/clean-code/reference.md"
 
@@ -51,20 +53,35 @@ jobs:
       - name: Test per-project installation
         run: |
           ./install.sh --project ./test-workspace
+          test -f "./test-workspace/.agents/skills/clean-code/SKILL.md"
           test -f "./test-workspace/.claude/skills/clean-code/SKILL.md"
           test -f "./test-workspace/.claude/skills/clean-code/reference.md"
 
-      - name: Test Cursor rules generation
+      - name: Test hooks installation (global, idempotent, preserves settings)
         run: |
-          ./install.sh --cursor ./test-workspace
-          test -f "./test-workspace/.cursorrules"
-          grep -q "Early Return" "./test-workspace/.cursorrules"
+          mkdir -p "$HOME/.claude"
+          echo '{"model":"sonnet"}' > "$HOME/.claude/settings.json"
+          ./install.sh --hooks
+          ./install.sh --hooks
+          test -f "$HOME/.claude/hooks/clean-code-inject.mjs"
+          test -f "$HOME/.claude/hooks/clean-code-reset.mjs"
+          test -f "$HOME/.claude/hooks/clean-code-session.mjs"
+          test "$(grep -c 'clean-code-inject.mjs' "$HOME/.claude/settings.json")" = "1"
+          grep -q '"model": "sonnet"' "$HOME/.claude/settings.json"
 
-      - name: Test Windsurf rules generation
+      - name: Test hooks injection (once per session)
         run: |
-          ./install.sh --windsurf ./test-workspace
-          test -f "./test-workspace/.windsurfrules"
-          grep -q "Early Return" "./test-workspace/.windsurfrules"
+          payload='{"session_id":"ci-'"$$"'","tool_input":{"file_path":"a.ts"}}'
+          mkdir -p "$HOME/.claude/skills"
+          ./install.sh --global
+          echo "$payload" | node "$HOME/.claude/hooks/clean-code-inject.mjs" | grep -q "Early return"
+          test -z "$(echo "$payload" | node "$HOME/.claude/hooks/clean-code-inject.mjs")"
+
+      - name: Test per-project hooks installation
+        run: |
+          ./install.sh --hooks ./hooks-workspace
+          test -f "./hooks-workspace/.claude/hooks/clean-code-inject.mjs"
+          grep -q 'CLAUDE_PROJECT_DIR' "./hooks-workspace/.claude/settings.json"
 
       - name: Test piped execution (like curl | bash)
         run: |
@@ -75,14 +92,12 @@ jobs:
         run: |
           ./install.sh --uninstall
           ! test -e "$HOME/.claude/skills/clean-code"
+          ! test -e "$HOME/.claude/hooks/clean-code-inject.mjs"
+          ! grep -q 'clean-code-inject' "$HOME/.claude/settings.json"
 
       - name: Test Makefile targets
         run: |
           make install
-          make cursor
-          make windsurf
-          test -f "./.cursorrules"
-          test -f "./.windsurfrules"
           make uninstall
 
   docs-check:
@@ -102,6 +117,8 @@ jobs:
           test -f docs/INSTALL.pt-BR.md
           test -f docs/README.pt-BR.md
           test -f docs/CONTRIBUTING.pt-BR.md
-          test -f rules/cursorrules
-          test -f rules/windsurfrules
+          test -f hooks/clean-code-inject.mjs
+          test -f hooks/clean-code-reset.mjs
+          test -f hooks/clean-code-session.mjs
+          test -f hooks/configure-settings.mjs
           test -f package.json

@@ -37,8 +37,8 @@ Nosso guia de referência (`reference.md`) ilustra princípios universais de Cle
 
 Caso encontre algum bug ou deseje melhorar o `install.sh` ou `Makefile`:
 1. Mantenha o script compatível com Bash / POSIX.
-2. Não insira textos ou regras estáticas hardcoded dentro do `install.sh` — use arquivos sob demanda em `rules/` ou na raiz.
-3. Teste localmente todos os modos suportados (`--global`, `--project`, `--cursor`, `--windsurf`, `--uninstall`).
+2. Não insira textos ou regras estáticas hardcoded dentro do `install.sh` — derive-os do `SKILL.md` e dos demais arquivos do repositório na hora da instalação.
+3. Teste localmente todos os modos suportados (`--global`, `--project`, `--hooks`, `--uninstall`).
 
 ---
 
@@ -60,8 +60,8 @@ Caso encontre algum bug ou deseje melhorar o `install.sh` ou `Makefile`:
    # Teste instalação global em diretório temporário
    HOME=/tmp/test-home ./install.sh --global
 
-   # Teste geração de regras do Cursor
-   ./install.sh --cursor /tmp/test-project
+   # Teste instalação em projeto
+   ./install.sh --project /tmp/test-project
    ```
 
 ---

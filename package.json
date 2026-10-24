@@ -8,18 +8,17 @@
   },
   "files": [
     "bin/",
+    "hooks/",
     "install.sh",
     "SKILL.md",
     "reference.md",
-    "rules/",
     "LICENSE",
     "README.md"
   ],
   "scripts": {
     "install:global": "./install.sh --global",
     "install:project": "./install.sh --project",
-    "install:cursor": "./install.sh --cursor",
-    "install:windsurf": "./install.sh --windsurf",
+    "install:hooks": "./install.sh --hooks",
     "uninstall": "./install.sh --uninstall"
   },
   "repository": {

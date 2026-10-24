@@ -1,13 +1,12 @@
-.PHONY: install link project cursor windsurf uninstall help
+.PHONY: install link project hooks uninstall help
 
 help:
 	@echo "Clean Code Skill - Comandos disponíveis:"
 	@echo "  make install    - Instala globalmente (cópia dos arquivos)"
 	@echo "  make link       - Instala globalmente com symlink (desenvolvimento)"
-	@echo "  make project    - Instala no diretório atual (.claude e .agents)"
-	@echo "  make cursor     - Gera .cursorrules no diretório atual"
-	@echo "  make windsurf   - Gera .windsurfrules no diretório atual"
-	@echo "  make uninstall  - Remove a skill global e localmente"
+	@echo "  make project    - Instala no diretório atual (.agents/skills + link em .claude/skills)"
+	@echo "  make hooks      - Instala os hooks do Claude Code (global)"
+	@echo "  make uninstall  - Remove a skill e os hooks, global e localmente"
 
 install:
 	@chmod +x install.sh
@@ -21,13 +20,9 @@ project:
 	@chmod +x install.sh
 	@./install.sh --project
 
-cursor:
+hooks:
 	@chmod +x install.sh
-	@./install.sh --cursor
-
-windsurf:
-	@chmod +x install.sh
-	@./install.sh --windsurf
+	@./install.sh --hooks
 
 uninstall:
 	@chmod +x install.sh
